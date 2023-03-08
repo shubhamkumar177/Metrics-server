@@ -1,0 +1,19 @@
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+# To Verify if metrics server is running or not
+kubectl get deployment metrics-server -n kube-system
+#if it is not running then simply copy the command and paste it on deployment
+kubectl edit deploy metrics-server -n kube-system
+containers:
+      - args:
+        - --cert-dir=/tmp
+        - --secure-port=4443
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-use-node-status-port
+        - --metric-resolution=15s
+        command:
+        - /metrics-server
+        - --kubelet-insecure-tls
+        - --kubelet-preferred-address-types=InternalIP
+        
+       --------------------- done -----------------------------------------------
+        
