@@ -15,5 +15,10 @@ containers:
         - --kubelet-insecure-tls
         - --kubelet-preferred-address-types=InternalIP
         
+#add below dns policy
+kubectl edit deploy metrics-server -n kubesystem
+hostNetwork: true
+save wq!
+        
        --------------------- done -----------------------------------------------
         
